@@ -22,10 +22,10 @@ GitHubs guide: https://docs.github.com/en/pages/getting-started-with-github-page
 - `om-oss.html`: presentation av verksamheten.
 - `kontakt.html`: kontaktuppgifter, förfrågan och kort integritetstext.
 - `404.html`: felsida.
-- `styles.css`: utseende och mobilanpassning.
+- `theme.css`: hela designsystemet, inklusive mobilanpassning och reducerad rörelse.
 - `config.js`: kontaktuppgifter som används av JavaScript.
 - `app.js`: mobilmeny och mejlutkast.
-- `experience.css`: den nya interaktiva layouten och formulärets utseende.
+- `studio.js`: färgval, läsprogress och diskreta inträdesrörelser.
 - `explore.js`: byt mellan tre exempel på startsidan och ta med valet till kontakt.
 - `planner.js`: välj önskade funktioner, växla förhandsvisningens format och ta med ett underlag till kontaktformuläret.
 - `inquiry-api.js`: förberedd transport till ett framtida PHP-API, avstängd som standard.
@@ -41,7 +41,9 @@ Projektkorten är tydligt märkta fiktiva designkoncept, inte genomförda kundpr
 
 ## Kontroll
 
-JavaScript-syntax, interna filer/länkar och mejlutkastets logik har kontrollerats. Visuell webbläsarkontroll kunde inte slutföras eftersom den lokala förhandsvisningen blockerades av miljöns nätverksåtkomst.
+JavaScript-syntax, 122 interna länkar/filer och formulärlogik är kontrollerade. Lokal förhandsvisning svarar med HTTP 200. Hela startsidan är visuellt granskad i dator- och mobilformat, och kontaktsidan i mobilformat. Kontroll av dokumentbredd vid 320, 390, 768 och 1440 pixlar visade ingen horisontell sidöverströmning. Mobilmeny, färgval, exempelval, formatväxling, behovsväljare, överföring till kontakt och obligatoriska formulärfält har provats i webbläsaren. Inga JavaScript-fel rapporterades under kontrollen. Det är inte en fullständig granskning i alla webbläsare eller på fysiska telefoner.
+
+API-transportens lyckade svar, HTTP-fel, negativ bekräftelse, ogiltig JSON och timeout testas med simulerade svar. Ingen verklig PHP/SQL-server är ansluten och inga kundförfrågningar skickades under testerna.
 
 ## Logotyp och presentation
 
