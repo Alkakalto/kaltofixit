@@ -1,6 +1,6 @@
 # KaltofixIT
 
-En svensk, mobilanpassad portfolio i vanlig HTML, CSS och JavaScript. Ingen installation eller byggprocess krävs.
+En svensk, mobilanpassad hemsida för KaltofixIT, inriktad på små och medelstora företag och hobbyverksamheter. Byggd i vanlig HTML, CSS och JavaScript. Ingen installation eller byggprocess krävs.
 
 ## Publicera på GitHub Pages
 
@@ -37,3 +37,8 @@ Projektkorten är tydligt märkta fiktiva designkoncept, inte genomförda kundpr
 ## Kontroll
 
 JavaScript-syntax, interna filer/länkar och mejlutkastets logik har kontrollerats. Visuell webbläsarkontroll kunde inte slutföras eftersom den lokala förhandsvisningen blockerades av miljöns nätverksåtkomst.
+
+## Logotyp och presentation
+
+Logotypen i kaltofixit-logo.png är originalbilden som ägaren tillhandahållit. Den används i sidhuvud, sidfot, på Om oss och som sidikon. Bilden är 160 × 160 px och ska inte förstoras utöver originalstorleken. Presentationen av Alexander som IT-tekniker i Stockholm bygger på innehållet i den tidigare webbplats som ägaren delat.
+
