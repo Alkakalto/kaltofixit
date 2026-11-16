@@ -47,6 +47,7 @@ Lyckad mottagning: HTTP 200 eller 201 med `{"ok":true}`. Returnera detta först 
 ## Filer
 
 - `explore.js`: exempelval och överföring av ett tillåtet verksamhetsval via URL, inga personuppgifter i URL:en.
+- `planner.js`: endast tillåtna funktionsval och upplägg tas från URL. De fyller i meddelandefältet som kunden kan redigera. Befintligt JSON-kontrakt används utan nya databasfält.
 - `app.js`: formulärvärden, validering, status och reservväg via kopiering.
 - `inquiry-api.js`: JSON-anrop och timeout; ingen layoutkod.
 - `config.js`: kontaktuppgifter och transportval, inga hemligheter.

@@ -27,6 +27,7 @@ GitHubs guide: https://docs.github.com/en/pages/getting-started-with-github-page
 - `app.js`: mobilmeny och mejlutkast.
 - `experience.css`: den nya interaktiva layouten och formulärets utseende.
 - `explore.js`: byt mellan tre exempel på startsidan och ta med valet till kontakt.
+- `planner.js`: välj önskade funktioner, växla förhandsvisningens format och ta med ett underlag till kontaktformuläret.
 - `inquiry-api.js`: förberedd transport till ett framtida PHP-API, avstängd som standard.
 - `BACKEND.md`: fält, JSON-kontrakt och steg för framtida PHP/SQL-koppling.
 
