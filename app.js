@@ -14,14 +14,36 @@ if (form) {
   if ([...form.elements.type.options].some(option => option.value === type)) form.elements.type.value = type;
   let draft = '';
   const status = document.querySelector('#form-status');
-  form.addEventListener('submit', event => {
+  const apiMode = settings.inquiry?.mode === 'api';
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (apiMode) {
+    submitButton.textContent = 'Skicka min förfrågan ↗';
+    document.querySelector('#delivery-help').textContent = 'Din förfrågan skickas till KaltofixIT. Den är ingen bindande beställning.';
+  }
+  let submitting = false;
+  form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
+    if (submitting || !form.reportValidity()) return;
     const values = new FormData(form);
     const selected = form.elements.type.selectedOptions[0].textContent;
-    draft = `Hej ${settings.name}!\n\nJag är intresserad av: ${selected}\n\n${values.get('message').trim()}\n\nNamn: ${values.get('name').trim()}\nFöretag: ${values.get('company').trim() || '–'}\nE-post: ${values.get('email').trim()}\nTelefon: ${values.get('phone').trim() || '–'}`;
+    const businessType = values.get('businessType') || '';
+    const businessLabels = {foretag:'Företag',hobby:'Hobbyverksamhet',tjanster:'Tjänster'};
+    draft = `Hej ${settings.name}!\n\nJag är intresserad av: ${selected}${businessLabels[businessType] ? '\nVerksamhet: '+businessLabels[businessType] : ''}\n\n${values.get('message').trim()}\n\nNamn: ${values.get('name').trim()}\nFöretag: ${values.get('company').trim() || '–'}\nE-post: ${values.get('email').trim()}\nTelefon: ${values.get('phone').trim() || '–'}`;
     document.querySelector('#copy-text').value = draft;
     document.querySelector('#copy-inquiry').classList.add('visible');
+    if (apiMode) {
+      const payload = {schemaVersion:1,source:'kaltofixit-web',businessType:businessLabels[businessType] ? businessType : ''};
+      for (const key of ['name','company','email','phone','type','message']) payload[key] = String(values.get(key) || '').trim();
+      submitting = true; submitButton.disabled = true; form.setAttribute('aria-busy','true');
+      status.dataset.state = 'pending'; status.textContent = 'Skickar din förfrågan…';
+      try {
+        await window.InquiryAPI.send(payload,settings.inquiry);
+        status.dataset.state = 'success'; status.textContent = 'Tack! Din förfrågan har tagits emot. Jag hör av mig via uppgifterna du lämnat.';
+      } catch (error) {
+        status.dataset.state = 'error'; status.textContent = error.message;
+      } finally {submitting = false; submitButton.disabled = false; form.setAttribute('aria-busy','false');}
+      return;
+    }
     status.textContent = 'Mejlutkastet är förberett. Skicka det i ditt e-postprogram. Om inget öppnas kan du kopiera förfrågan nedan och mejla den till ' + settings.email + '.';
     location.href = `mailto:${settings.email}?subject=${encodeURIComponent('Förfrågan: ' + selected)}&body=${encodeURIComponent(draft)}`;
   });

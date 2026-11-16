@@ -25,6 +25,10 @@ GitHubs guide: https://docs.github.com/en/pages/getting-started-with-github-page
 - `styles.css`: utseende och mobilanpassning.
 - `config.js`: kontaktuppgifter som används av JavaScript.
 - `app.js`: mobilmeny och mejlutkast.
+- `experience.css`: den nya interaktiva layouten och formulärets utseende.
+- `explore.js`: byt mellan tre exempel på startsidan och ta med valet till kontakt.
+- `inquiry-api.js`: förberedd transport till ett framtida PHP-API, avstängd som standard.
+- `BACKEND.md`: fält, JSON-kontrakt och steg för framtida PHP/SQL-koppling.
 
 Kontaktuppgifter finns även i HTML för att fungera utan JavaScript. Uppdatera båda när de ändras. Företagsnamnet finns också i titlar, sidtexter och logotyp.
 
