@@ -1,51 +1,27 @@
-# KaltofixIT
+# KaltofixIT – ny webbplats
 
-En svensk, mobilanpassad hemsida för KaltofixIT, inriktad på små och medelstora företag och hobbyverksamheter. Byggd i vanlig HTML, CSS och JavaScript. Ingen installation eller byggprocess krävs.
+Ny design och ny kod, byggd från grunden. Vanlig HTML, CSS och JavaScript, utan byggsteg eller externa beroenden. Tidigare design och interaktiva planeringsverktyg används inte.
 
-## Publicera på GitHub Pages
+## Sidor
 
-1. Öppna repots **Settings → Pages**.
-2. Välj **Deploy from a branch** under Source.
-3. Välj **main** och **/(root)** och spara.
-4. Vänta på GitHubs publicering. Sidans adress visas under Pages.
+- index.html: kort startsida med erbjudande, tre tjänstevägar och personlig kontakt.
+- tjanster.html: innehåll och arbetsgång.
+- projekt.html: introduktion till ett funktionellt demoexempel.
+- exempel-snickeri.html: separat, tydligt fiktiv företagssida med meny och FAQ.
+- om-oss.html: Alexander och arbetssättet.
+- kontakt.html: kontaktuppgifter och förfrågan.
+- 404.html: felsida.
 
-Förväntad adress med standardinställningar: https://alkakalto.github.io/kaltofixit/
+## Publicering
 
-Repot är privat när sidan skapas. GitHub Free kräver ett offentligt repo för Pages; betalda planer kan stödja privata repon. Ingen synlighet har ändrats automatiskt. Inställningar: https://github.com/Alkakalto/kaltofixit/settings/pages
+Lägg filerna i repots rot. I GitHub Settings → Pages, välj publicering från main och /(root). Ingen egen domän eller byggprocess behövs. Webbplatsen är förberedd för GitHub Pages; PHP behöver köras på separat hosting som stöder PHP.
 
-GitHubs guide: https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+## Framtida PHP/SQL
 
-## Innehåll
+Formuläret öppnar tills vidare ett mejlutkast. Inget skickas automatiskt eller sparas på webbplatsen.
 
-- `index.html`: startsida.
-- `projekt.html`: designkoncept som ersätts med riktiga projekt när dessa valts.
-- `om-oss.html`: presentation av verksamheten.
-- `kontakt.html`: kontaktuppgifter, förfrågan och kort integritetstext.
-- `404.html`: felsida.
-- `theme.css`: hela designsystemet, inklusive mobilanpassning och reducerad rörelse.
-- `config.js`: kontaktuppgifter som används av JavaScript.
-- `app.js`: mobilmeny och mejlutkast.
-- `studio.js`: färgval, läsprogress och diskreta inträdesrörelser.
-- `explore.js`: byt mellan tre exempel på startsidan och ta med valet till kontakt.
-- `planner.js`: välj önskade funktioner, växla förhandsvisningens format och ta med ett underlag till kontaktformuläret.
-- `inquiry-api.js`: förberedd transport till ett framtida PHP-API, avstängd som standard.
-- `BACKEND.md`: fält, JSON-kontrakt och steg för framtida PHP/SQL-koppling.
+När din server finns ändrar du `delivery` till `api` och `endpoint` till adressen i settings.js. Klienten skickar JSON via POST med schemaVersion:1 och fälten name, email, company, phone, message och type. Typ är ny, fornya, forslag eller fraga. Lyckat svar måste vara HTTP 2xx med `{ "ok": true }`. Timeout är 15 sekunder. Fel behåller texten; kopiering till mejl finns som reserv.
 
-Kontaktuppgifter finns även i HTML för att fungera utan JavaScript. Uppdatera båda när de ändras. Företagsnamnet finns också i titlar, sidtexter och logotyp.
+Validera obligatoriskt namn, e-post och meddelande på servern. Maxlängder: namn 100, e-post 160, företag 120, telefon 40, meddelande 2000. Tillåt endast kända type-värden. Använd förberedda SQL-frågor. Databaslösenord hör endast hemma på servern. Planera spam-/frekvensbegränsning, eventuell CSRF-hantering, gallring och åtkomst. För API på annan domän måste servern hantera CORS/preflight för webbplatsens origin. Uppdatera integritetstexten före aktivering av lagring. Bekräfta endast mottagning när servern verkligen tagit emot förfrågan.
 
-## Förfrågningar
-
-Formuläret validerar obligatoriska fält och öppnar ett `mailto:`-utkast i besökarens e-postprogram. Besökaren måste själv skicka mejlet. Det finns en kopieringsknapp som reserv. Inga formulärdata sparas på webbplatsen. För direkt leverans från webben behövs en separat formulärtjänst eller serverfunktion; ingen sådan tjänst är ansluten.
-
-Projektkorten är tydligt märkta fiktiva designkoncept, inte genomförda kundprojekt. Ersätt med bilder, beskrivningar och verifierade länkar till egna arbeten.
-
-## Kontroll
-
-JavaScript-syntax, 122 interna länkar/filer och formulärlogik är kontrollerade. Lokal förhandsvisning svarar med HTTP 200. Hela startsidan är visuellt granskad i dator- och mobilformat, och kontaktsidan i mobilformat. Kontroll av dokumentbredd vid 320, 390, 768 och 1440 pixlar visade ingen horisontell sidöverströmning. Mobilmeny, färgval, exempelval, formatväxling, behovsväljare, överföring till kontakt och obligatoriska formulärfält har provats i webbläsaren. Inga JavaScript-fel rapporterades under kontrollen. Det är inte en fullständig granskning i alla webbläsare eller på fysiska telefoner.
-
-API-transportens lyckade svar, HTTP-fel, negativ bekräftelse, ogiltig JSON och timeout testas med simulerade svar. Ingen verklig PHP/SQL-server är ansluten och inga kundförfrågningar skickades under testerna.
-
-## Logotyp och presentation
-
-Logotypen i kaltofixit-logo.png är originalbilden som ägaren tillhandahållit. Den används i sidhuvud, sidfot, på Om oss och som sidikon. Bilden är 160 × 160 px och ska inte förstoras utöver originalstorleken. Presentationen av Alexander som IT-tekniker i Stockholm bygger på innehållet i den tidigare webbplats som ägaren delat.
-
+Kontaktuppgifter finns både i HTML och settings.js. Uppdatera båda vid ändring. Originalbilden logo.png kommer från ägaren.
